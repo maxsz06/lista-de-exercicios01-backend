@@ -1,14 +1,23 @@
-const calcular = function(peso,altura){
+/**************************
+ * Objetivo:Realizar calculos
+ * Autor:Maxwillian
+ * Data:27/02/2026
+ * ********************* */
+    
 
-    peso = Number(setPeso)
-    altura = Number(setAltura)
+const realizarCalculos = function(pesoDef,alturaDef){
 
-    const imc = peso/(altura*altura)
+    let peso = pesoDef
+    let altura = alturaDef
 
-    console.log(imc)
+    let imc = peso/(altura*altura)
+
+    return Number(imc).toFixed(2) 
 }
 
 module.exports={
 
- calcular
+    realizarCalculos
+
+
 }

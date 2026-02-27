@@ -1,17 +1,22 @@
-const tratarEntrada = function(setPeso,setAltura){
- 
-    peso = Number(setPeso)
-    altura = Number(setAltura)
 
-    if(setPeso == '' || isNaN(setPeso) || setAltura == ''|| isNaN ((setAltura))){
-        console.log('Erro: Valores de entrada errados')
+const tratamentoDeDados = function (numero) {
+
+    let setNumero = numero.replace(",", ".")
+
+    if (setNumero === '') {
+        console.log('Preencha os Campos!')
         return false
-    }else{
-        return true 
+    } else if (isNaN(setNumero)) {
+        console.log('Opção Invalida: Apenas Numeros')
+        return false
+    } else {
+
+        return Number(setNumero).toFixed(2)
     }
+
 }
 
-module.exports={
+module.exports = {
 
-    tratarEntrada
+    tratamentoDeDados
 }
