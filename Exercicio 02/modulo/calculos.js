@@ -1,19 +1,11 @@
-const calcularMedia = function(nota1, nota2, nota3){
 
-    let = calcularMedia(nota1,nota2,nota3)
-    
-    if (media < 49){
-        console.log("O aluno esta reprovado!!")
-    }else if(media < 69){
-        console.log("Digite a nota do exame do aluno:")
-    }else if(media >=70){
-        console.log ("Aluno Aprovado!!")
-        return false
-    }
-}
 
-const media = (nota1,nota2,nota3) => (Number(nota1))+(Number(nota2))+(Number(nota3))/3
+const calcularMedia = (n1,n2,n3,n4) => (Number(n1)+Number(n2)+Number(n3)+Number(n4))/4
+
+const calcularRecuperacao = (mediaTotal, nr) => (Number(mediaTotal)+Number(nr))/2
  
 module.exports={
-    calcularMedia
+    calcularMedia,
+    calcularRecuperacao
 }
+

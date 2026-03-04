@@ -4,6 +4,8 @@
  * Data: 27/02/2026
  * **************************/
 let tratarDados = require('./modulo/tratamento.js')
+let calcular = require('./modulo/calculos.js')
+let relatorio = require('./modulo/relatorio.js')
 
 const readLine = require('readline')
 const entradaDeDados = readLine.createInterface({
@@ -13,45 +15,100 @@ const entradaDeDados = readLine.createInterface({
 
 })
 
-entradaDeDados.question('Digite o nome do aluno:', function (setAluno) {
+entradaDeDados.question('Digite o nome do aluno(a):', function (setAluno) {
     let aluno = setAluno
-    entradaDeDados.question('Digite o Nome do professor: ', function (setProfessor) {
-        let professor = setProfessor
-        entradaDeDados.question('Digite o Sexo do Aluno:', function (setSexoAluno) {
-            let sexoAluno = setSexoAluno
-            entradaDeDados.question('Digite o Sexo do Professor: ', function (setSexoProfessor) {
-                let sexoProfessor = setSexoProfessor
-                entradaDeDados.question('Nome do Curso', function (setCurso) {
-                    let curso = setCurso
-                    entradaDeDados.question('Nome da Diciplina:', function (setDiciplina) {
-                        let diciplina = setDiciplina
+    let alunoDef = tratarDados.tratarInformacoes(setAluno)
 
-                        /*let nomeAluno = tratarDados.tratarInformacoes(setAluno)
-                         let nomeProfessor = tratarDados.tratarInformacoes(setProfessor)
-                         let alunoSexo = tratarDados.tratarInformacoes(setSexoAluno)
-                         let professorSexo = tratarDados.tratarInformacoes(setSexoProfessor)
-                         let cursoAtual = tratarDados.tratarInformacoes(setCurso)
-                         let diciplinaAtual = tratarDados.tratarInformacoes(setDiciplina)*/
+    console.log('[1]- Masculino')
+    console.log('[2]- Ferminino')
+    entradaDeDados.question('Digite o Sexo do Aluno(a): ', function (setSexoA) {
+        let sexoAluno = setSexoA
+        let sexoAlDef = tratarDados.tratarSexoAluno(setSexoA)                            // Sexo Do Aluno
 
-                        let tratarDadosString = tratarDados.tratarInformacoes(setAluno, setProfessor, setProfessor, setAluno, setSexoAluno,
-                            setSexoProfessor, setCurso, setProfessor)
+        console.log()
+
+        entradaDeDados.question('Digite o nome do Professor(a):', function (setProfessor) {
+            let professor = setAluno
+            let professorDef = tratarDados.tratarInformacoes(setProfessor)
+
+            console.log('[1]- Masculino')
+            console.log('[2]- Ferminino')
+            entradaDeDados.question('Digite o Sexo do Professor(a): ', function (setSexoProf) {
+                let sexoProfessor = setSexoProf
+                let sexoProfDef = tratarDados.tratarSexoProf(setSexoProf)       //Sexo Prof
+
+                console.log()
+
+                entradaDeDados.question('Digite o Nome do curso:', function (setCurso) {
+                    let defCurso = setCurso
+                    let curso = tratarDados.tratarInformacoes(setCurso)
+                    entradaDeDados.question('Digite o nome da diciplina: ', function (setDiciplina) {
+                        let defDiciplina = setDiciplina
+                        let diciplina = tratarDados.tratarInformacoes(setCurso)
+
+                        console.log()
+
+                        entradaDeDados.question('Digite a Nota 1:', function (setN1) {
+                            let defN1 = setN1
+                            let n1 = tratarDados.tratarNotas(setN1)
+
+                            entradaDeDados.question('Digite a Nota 2:', function (setN2) {
+                                let defN2 = setN2
+                                let n2 = tratarDados.tratarNotas(setN2)
+
+                                entradaDeDados.question('Digite a Nota 3:', function (setN3) {
+                                    let defN3 = setN3
+                                    let n3 = tratarDados.tratarNotas(setN3)
+
+                                    entradaDeDados.question('Digite a Nota 4:', function (setN4) {
+                                        let defN4 = setN4
+                                        let n4 = tratarDados.tratarNotas(setN4)
+
+
+                                        let mediaTotal = calcular.calcularMedia(n1, n2, n3, n4)
+
+
+                                        if (mediaTotal >= 70) {
+                                            let status = 'aprovado'
+                                            let relatorioAprovado = relatorio.relatorioAprovado(alunoDef, sexoAlDef, professorDef, sexoProfDef,
+                                                curso, diciplina, status, n1, n2, n3, n4, mediaTotal)
+
+                                        } else if (mediaTotal <= 49.9) {
+                                            let status = 'recuperação'
+
+                                            entradaDeDados.question('Digite a nota de recuperação: ', function (setRecuperação) {
+                                                let nRecuperacao = setRecuperação
+                                                let nr = tratarDados.tratarNotas(setRecuperação)
+
+                                                let mediaRecuperacao = calcular.calcularRecuperacao(mediaTotal, nr)
+
+                                                if (mediaRecuperacao <= 49.9) {
+                                                    let status = 'reprovado'
+                                                    let relatorioReprovado = relatorio.relatorioReprovado(alunoDef, sexoAlDef, professorDef, sexoProfDef,
+                                                        curso, diciplina, status, n1, n2, n3, n4, mediaTotal)
+
+                                                } else if (mediaRecuperacao >= 50) {
+                                                    let status = 'aprovado na recuperacao'
+                                                    let relatorioAprovadoRecuperacao = relatorio.relatorioRecuperacao(alunoDef, sexoAlDef, professorDef, sexoProfDef,
+                                                        curso, diciplina, status, n1, n2, n3, n4, mediaTotal , nr, mediaRecuperacao)
+                                                }
+
+                                            })
+                                        }
+
+
+                                    })
+                                })
+                            })
+                        })
 
 
 
-                        entradaDeDados.question('Digite nota 1: ', function (setNota1) {
-                            let n1 = setNota1
-                            entradaDeDados.question('Digite nota 2: ', function (setNota2) {
-                                let n2 = setNota2
-                                entradaDeDados.question('Digite nota 3:', function (setNota3) {
-                                    let n3 = setNota3
-                                    
-                                }) // fechamento nota 3
-                            })// fechamento nota 2
-                        }) // fechamento nota1
+                    })    // Fechamento diciplina
+                }) // Fechamento curso              
 
-                    }) // fechamento 6
-                })// Fechamento 5
-            }) //Fechamento 4
-        }) // Fechamento 3
-    })//Fechamento 2
-})//Fechamento 1
+            })// fechamento professor sexo 
+        })//Fechamento professor nome 
+
+    })// fechamento aluno sexo 
+})//Fechamento aluno nome 
