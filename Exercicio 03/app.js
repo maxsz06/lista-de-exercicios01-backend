@@ -1,4 +1,5 @@
 let tratar = require("./modulo/tratamento.js")
+let calcular = require('./modulo/calculos.js')
 
 const readLine = require('readline')
 const entradaDeDados = readLine.createInterface({
@@ -28,15 +29,10 @@ entradaDeDados.question("Digite a tabuada inicial (2-100): ", function (settInic
                 let ccFim = setCfim
                 let scFim = Number(tratar.tratarContador(setCfim))
 
+
                 // Mostrar tabuada 
+                let calcularTabuada = calcular.calcularTabuadaCompleta(tInic,tFim,scInic,scFim)
 
-                for (let i = tInic; i <= tFim; i++) {
-                    console.log(`\nTabuada do [${i}]`)
-
-                    for (let j = scInic; j <= scFim; j++) {
-                        console.log(`${i}x ${j} = ${i * j}`)
-                    }
-                }
             })
 
         })

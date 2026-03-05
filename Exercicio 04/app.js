@@ -1,5 +1,6 @@
 
 let tratar = require('./modulo/tratamento.js')
+let calculo = require('./modulo/calculos.js')
 
 const readLine = require('readline')
 const entradaDeDados = readLine.createInterface({
@@ -10,19 +11,12 @@ const entradaDeDados = readLine.createInterface({
 })
 
 
-entradaDeDados.question('Digite o Fatorial do seu nomero Inicial:', function (setNumber) {
-    let num = tratar.tratarFatoriaInc(setNumber)
-    let fatorial = Number(num)
-
-    // realizar calculo
-    const valorInicial = 1
-
-    while (valorInicial<fatorial) {
-        
-        console.log(valorInicial)
+entradaDeDados.question('Ditite o Numero do seu fatorial:',function(v1){  // Numero
+    let valor1 = tratar.tratamentoDeDados(v1)
 
 
-                valorInicial++
-    }
 
+    let valorFatorial = calculo.calcularFatorial(valor1)
 })
+
+
