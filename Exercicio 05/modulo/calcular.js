@@ -6,7 +6,7 @@ const calcSequenciaImpar = function(v1, v2){
 
     for (valorInicial; valorInicial <= valorFinal; valorInicial++){
 
-        if (valorInicial % 2 !== 0) {
+        if (valorInicial % 2 !== 0) { // Vai pegar o resto da divisão de 2 e se der diferente de 0 a
             console.log(valorInicial)
             voltas++
         }
